@@ -7,15 +7,15 @@ addEventListener('message', onMessage);
 function onMessage(e) {
   switch (e.data) {
     case 'ready':
-      console.log('ready', performance.now() - init);
+      // console.log('ready', performance.now() - init);
       channel = e.source;
       connect();
     break;
-      
-    case 'connected': 
+
+    case 'connected':
       channel.postMessage('request', '*');
     break;
-      
+
     case 'response':
       var now = performance.now();
       console.log('since init', now - init)
