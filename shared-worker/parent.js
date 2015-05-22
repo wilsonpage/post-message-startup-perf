@@ -1,4 +1,5 @@
 var log = console.log.bind(console, '[parent]');
+var select = document.querySelector('select');
 var worker = new SharedWorker('child.js');
 var init = performance.now();
 var channel;
@@ -9,26 +10,23 @@ worker.port.onmessage = onMessage;
 
 function onMessage(e) {
   switch (e.data) {
-    case 'ready':
-      connect();
-    break;
-
     case 'connected':
       worker.port.postMessage('request');
     break;
 
-    case 'response':
+    case 'pong':
       var now = performance.now();
-      log('total', now - start);
+      log('TOTAL:', now - start);
     break;
   }
 }
 
-function connect() {
+function run() {
   log('connect');
+  var blockType = select.options[select.selectedIndex].value;
   start = performance.now();
   worker.port.postMessage('connect');
-  block(1000);
+  task[blockType](function() { block(1000); });
 }
 
 function block(ms) {
@@ -37,10 +35,8 @@ function block(ms) {
   while (Date.now() < start + ms);
 }
 
-function microtask(fn) {
-  Promise.resolve().then(fn);
-}
-
-function macrotask(fn) {
-  setTimeout(fn);
-}
+var task = {
+  sync: function(fn) { fn(); },
+  microtask: function(fn) { Promise.resolve().then(fn); },
+  macrotask: function(fn) { setTimeout(fn); }
+};

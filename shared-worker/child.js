@@ -14,9 +14,9 @@ function onMessage(e) {
       log('connect');
       port.postMessage('connected');
     break;
-    case 'request':
-      log('request');
-      port.postMessage('response');
+    case 'ping':
+      log('ping');
+      port.postMessage('pong');
     break;
   }
 }

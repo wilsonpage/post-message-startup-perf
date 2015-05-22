@@ -9,7 +9,6 @@ function onMessage(e) {
   switch (e.data) {
     case 'ready':
       channel = e.source;
-      connect();
     break;
 
     case 'connected':
@@ -18,13 +17,13 @@ function onMessage(e) {
 
     case 'response':
       var now = performance.now();
-      log('total', now - start);
+      log('TOTAL:', now - start);
     break;
   }
 }
 
-function connect() {
-  log('connect');
+function run() {
+  log('run');
   start = performance.now();
   channel.postMessage('connect', '*');
   block(1000);

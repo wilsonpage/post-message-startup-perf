@@ -7,10 +7,6 @@ channel.onmessage = onMessage;
 
 function onMessage(e) {
   switch (e.data) {
-    case 'ready':
-      connect();
-    break;
-
     case 'connected':
       channel.postMessage('request');
     break;
@@ -22,13 +18,12 @@ function onMessage(e) {
   }
 }
 
-function connect() {
-  log('connect');
+function run() {
+  log('run');
   start = performance.now();
   channel.postMessage('connect');
   block(1000);
 }
-
 
 function block(ms) {
   log('blocking for', ms);

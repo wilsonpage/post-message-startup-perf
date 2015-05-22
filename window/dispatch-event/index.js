@@ -8,9 +8,7 @@ addEventListener('message', onMessage);
 function onMessage(e) {
   switch (e.data) {
     case 'ready':
-      log('ready', performance.now() - init);
       channel = e.source;
-      connect();
     break;
 
     case 'connected':
@@ -19,12 +17,12 @@ function onMessage(e) {
 
     case 'response':
       var now = performance.now();
-      log('total', now - start);
+      log('TOTAL:', now - start);
     break;
   }
 }
 
-function connect() {
+function run() {
   start = performance.now();
   channel.dispatchEvent(new MessageEvent('message', { data: 'connect' }));
   block(1000);

@@ -13,7 +13,13 @@
   </head>
 
   <body>
-    <button onclick="connect()">Reconnect</button>
+    Block after:
+    <select>
+      <option value="sync" selected>Sync
+      <option value="microtask">Microtask
+      <option value="macrotask">Macrotask
+    </select>
+    <button onclick="run()">Run</button>
   </body>
 
 </html>
