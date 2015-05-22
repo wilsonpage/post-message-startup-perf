@@ -1,8 +1,8 @@
+var log = console.log.bind(console, '[child]');
+
 addEventListener('message', onMessage);
 
 function onMessage(e) {
-  // console.log('child', e.data);
-
   switch (e.data) {
     case 'connect':
       window.parent.dispatchEvent(new MessageEvent('message', { data: 'connected' }));

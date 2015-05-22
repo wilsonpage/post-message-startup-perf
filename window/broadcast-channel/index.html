@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1">
 
-    <title>broadcast-channel</title>
+    <title>window / broadcast-channel</title>
 
     <style>
       body {
@@ -14,12 +14,12 @@
 
     <!-- Inline scripts are forbidden in Firefox OS apps (CSP restrictions),
          so we use a script file. -->
-    <script defer src="broadcast-channel.js"></script>
+    <script defer src="index.js"></script>
 
   </head>
 
   <body>
-    <iframe src="broadcast-channel-child.html"></iframe>
+    <iframe src="child.html"></iframe>
     <button onclick="connect()">Reconnect</button>
   </body>
 

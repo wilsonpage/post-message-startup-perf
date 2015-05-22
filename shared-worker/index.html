@@ -4,22 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1">
 
-    <title>dispatch-message</title>
-
-    <style>
-      body {
-        border: 1px solid black;
-      }
-    </style>
+    <title>shared-worker</title>
 
     <!-- Inline scripts are forbidden in Firefox OS apps (CSP restrictions),
          so we use a script file. -->
-    <script defer src="dispatch-message.js"></script>
+    <script defer src="parent.js"></script>
 
   </head>
 
   <body>
-    <iframe src="dispatch-message-child.html"></iframe>
     <button onclick="connect()">Reconnect</button>
   </body>
 

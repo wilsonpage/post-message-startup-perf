@@ -1,9 +1,10 @@
-1. Flash app to device using ADB
-2. Launch app
-3. Check console for timings
-4. Press 'reconnect' button in app
-5. Check console for timings
+- window
+  - [post-message](https://wilsonpage.github.io/post-message-startup-perf/window/post-message/index.html)
+  - [broadcast-channel](https://wilsonpage.github.io/post-message-startup-perf/window/broadcast-channel/index.html)
+  - [dispatch-event](https://wilsonpage.github.io/post-message-startup-perf/window/dispatch-event/index.html)
 
----
+- worker
+ - [post-message](https://wilsonpage.github.io/post-message-startup-perf/worker/index.html)
 
-We have observed the test to be up to 10x slower at startup.
+- shared-worker
+ - [post-message](https://wilsonpage.github.io/post-message-startup-perf/shared-worker/index.html)

@@ -1,3 +1,4 @@
+var log = console.log.bind(console, '[parent]');
 var channel = new BroadcastChannel('channel');
 var init = performance.now();
 var start;
@@ -16,13 +17,21 @@ function onMessage(e) {
 
     case 'response':
       var now = performance.now();
-      console.log('since init', now - init);
-      console.log('since connect', now - start);
+      log('TOTAL:', now - start);
     break;
   }
 }
 
 function connect() {
+  log('connect');
   start = performance.now();
   channel.postMessage('connect');
+  block(1000);
+}
+
+
+function block(ms) {
+  log('blocking for', ms);
+  var start = Date.now();
+  while (Date.now() < start + ms);
 }
