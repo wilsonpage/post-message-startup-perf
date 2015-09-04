@@ -1,44 +1,15 @@
-var log = console.log.bind(console, '[parent]');
-var init = performance.now();
-var channel;
-var start;
+// parent.console.time('parentload');
+// onload = e => parent.console.timeEnd('parentload');
 
-addEventListener('message', onMessage);
 
-function onMessage(e) {
+addEventListener('message', e => {
   switch (e.data) {
-    case 'ready':
-      channel = e.source;
-    break;
-
-    case 'connected':
-      channel.postMessage('request', '*');
-    break;
-
-    case 'response':
-      var now = performance.now();
-      log('TOTAL:', now - start);
+    case 'ping':
+      console.timeStamp('gotping');
+      // console.timeEnd('ping');
+      // console.time('pong');
+      console.timeStamp('pong');
+      e.source.postMessage('pong', '*');
     break;
   }
-}
-
-function run() {
-  log('run');
-  start = performance.now();
-  channel.postMessage('connect', '*');
-  block(1000);
-}
-
-function block(ms) {
-  log('blocking for', ms);
-  var start = Date.now();
-  while (Date.now() < start + ms);
-}
-
-function microtask(fn) {
-  Promise.resolve().then(fn);
-}
-
-function macrotask(fn) {
-  setTimeout(fn);
-}
+});

@@ -1,20 +1,15 @@
-var log = console.log.bind(console, '[child]');
+// parent.console.time('iframeload');
+// onload = e => parent.console.timeEnd('iframeload');
 
-addEventListener('message', onMessage);
-
-function onMessage(e) {
-  // console.log('child', e.data);
-
+addEventListener('message', e => {
   switch (e.data) {
-    case 'connect':
-      log('connect');
-      window.parent.postMessage('connected', '*');
-    break;
-    case 'request':
-      log('request');
-      window.parent.postMessage('response', '*');
+    case 'pong':
+      // parent.console.timeEnd('pong');
+      parent.console.timeStamp('gotpong');
     break;
   }
-}
+});
 
-window.parent.postMessage('ready', '*');
+// parent.console.time('ping');
+parent.postMessage('ping', '*');
+parent.console.timeStamp('ping');
